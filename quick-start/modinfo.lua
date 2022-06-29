@@ -1,0 +1,12 @@
+name="lingren-change"
+description =[[]]
+author ="artieSelf"
+version ="1" 
+forumthread = ""
+api_version = 10
+icon_atlas = "modicon.xml"
+icon ="modicon.tex"
+dst_compatible = true
+all_clients_require_mod = true
+client_only_mod = false
+server_filter_tags = {""}
