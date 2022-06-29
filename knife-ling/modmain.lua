@@ -32,10 +32,10 @@ local STRINGS = GLOBAL.STRINGS
     inst.components.finiteuses:SetUses(200)  
     inst.components.finiteuses:SetOnFinished(inst.Remove)
     inst:AddComponent("tool")
-	inst.components.tool:SetAction(ACTIONS.CHOP, 66)
-    inst.components.tool:SetAction(ACTIONS.MINE, 2)
+	inst.components.tool:SetAction(ACTIONS.CHOP, 1)
+    inst.components.tool:SetAction(ACTIONS.MINE, 1)
     if inst.components.equippable then inst.components.equippable.walkspeedmult =1.25 end
-	local function onattack(weapon, attacker, target)
+	local function onattack(inst, attacker, target)
 		if attacker then
 			--if  target.components.freezable then
 			--	if  target ~= nil and target.components.freezable ~= nil then
@@ -53,6 +53,7 @@ local STRINGS = GLOBAL.STRINGS
 		    attacker.components.sanity:DoDelta(0)
 		end
 	end
+		inst.mater=inst.mater+0.01
     end
     inst.components.weapon:SetOnAttack(onattack)
 end)
@@ -86,6 +87,12 @@ local function OnGetItemFromPlayer(inst, giver, item, player)
 	if inst.mater >= 2000 then
 	     inst.components.finiteuses:SetMaxUses(10000000000000000000000000000000)
 	end
+	if inst.mater >= 100  then
+		inst.components.weapon:SetRange(inst.mater/100+1,inst.mater/100+1)
+		inst.components.tool:SetAction(ACTIONS.CHOP, inst.mater/100+1)
+		inst.components.tool:SetAction(ACTIONS.MINE, inst.mater/100)
+	end
+
 	if currentperc>=1 then
 		currentperc=1
 	end
@@ -119,7 +126,7 @@ end
 
 AddPrefabPostInit("mymod",function(inst)
 	inst.mater=0
-	inst.components.weapon:SetDamage(50)
+	inst.components.weapon:SetDamage(40)
     inst:ListenForEvent("equipped",OnGetItemFromPlayer)
 	inst:AddComponent("trader")
 	inst.components.trader:SetAcceptTest(AcceptTest)

@@ -1,7 +1,7 @@
-name="lingren-change"
+name="soulknife"
 description =[[]]
 author ="artieSelf"
-version ="1" 
+version ="1.1"
 forumthread = ""
 api_version = 10
 icon_atlas = "modicon.xml"
