@@ -1,7 +1,7 @@
 name="soulknife"
 description =[[]]
-author ="artieSelf"
-version ="1.1"
+author ="artieYue"
+version ="1.15"
 forumthread = ""
 api_version = 10
 icon_atlas = "modicon.xml"

@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="anim">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/anim/halo3.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/seffc.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/expbean.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/halo1.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/memorypotion.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/lavaarena_hammer_attack_fx.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/halo5.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/altar.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/halo4.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/staffs.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/books_add.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/moonbase.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/halo2.zip!/" />
+      <root url="jar://$PROJECT_DIR$/anim/halo6.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

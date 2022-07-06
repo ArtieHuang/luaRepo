@@ -61,14 +61,15 @@ end)
 
 
 AddRecipe("mymod", {Ingredient("goldnugget", 10),Ingredient("purplegem", 1),Ingredient("livinglog", 5)}, RECIPETABS.WAR, TECH.SCIENCE_TWO, nil, nil, nil, nil, nil, "images/mymod.xml", "mymod.tex" )
-STRINGS.NAMES.MYMOD="灵刃"
-STRINGS.CHARACTERS.GENERIC.MYMOD ="灵刃"
-STRINGS.RECIPE_MYMOD= "灵刃"
+STRINGS.NAMES.MYMOD="魂刃"
+STRINGS.CHARACTERS.GENERIC.MYMOD ="魂刃"
+STRINGS.RECIPE_MYMOD= "魂刃"
 STRINGS.RECIPE_DESC.MYMOD= "斩断一切！"
 
 local function OnGetItemFromPlayer(inst, giver, item, player)
-    inst.components.weapon:SetDamage(50+inst.mater*1)
+    inst.components.weapon:SetDamage(40+inst.mater*1)
 	local currentperc = inst.components.finiteuses:GetPercent()
+
 	if item  then
 		if  item.prefab == "reviver" then
 			if inst.mater<50000 then
@@ -79,18 +80,21 @@ local function OnGetItemFromPlayer(inst, giver, item, player)
 				giver.components.talker:Say("已满级!")
 			end
 		end
+		if item.prefab == "cactus_meat" then
+			inst.mater = inst.mater+45
+			inst.components.weapon:SetDamage(40+inst.mater*1)
+			giver.components.talker:Say("等级重置为:"..inst.mater)
+
+		end
 		if item.prefab == "flint" then
 			currentperc=currentperc +0.1
 		end
-		
 	end
-	if inst.mater >= 2000 then
-	     inst.components.finiteuses:SetMaxUses(10000000000000000000000000000000)
-	end
-	if inst.mater >= 100  then
+	if inst.mater >= 30  then
 		inst.components.weapon:SetRange(inst.mater/100+1,inst.mater/100+1)
-		inst.components.tool:SetAction(ACTIONS.CHOP, inst.mater/100+1)
-		inst.components.tool:SetAction(ACTIONS.MINE, inst.mater/100)
+		inst.components.tool:SetAction(ACTIONS.CHOP, inst.mater/40+1)
+		inst.components.tool:SetAction(ACTIONS.MINE, inst.mater/100+1)
+		inst.components.finiteuses:SetMaxUses(200+inst.mater*3)
 	end
 
 	if currentperc>=1 then
@@ -121,7 +125,7 @@ end
 local function AcceptTest(inst, item)
     return item.prefab == "greengem" or item.prefab == "yellowgem" or item.prefab == "orangegem" or 
 	item.prefab == "thulecite" or item.prefab == "thulecite_pieces" or item.prefab == "bluegem"
-	or item.prefab == "purplegem" or item.prefab == "redgem" or item.prefab == "reviver"or item.prefab == "flint"
+	or item.prefab == "purplegem" or item.prefab == "redgem" or item.prefab == "reviver"or item.prefab == "flint" or item.prefab == "cactus_meat"
 end
 
 AddPrefabPostInit("mymod",function(inst)
@@ -144,4 +148,9 @@ AddPrefabPostInit("flint",function(inst)
 	if not inst.components.tradable then
 		inst:AddComponent("tradable")
     end
-end)	
+end)
+AddPrefabPostInit("cactus_meat",function(inst)
+	if not inst.components.tradable then
+		inst:AddComponent("tradable")
+	end
+end)
